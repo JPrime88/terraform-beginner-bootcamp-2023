@@ -1,6 +1,7 @@
 # Terraform Beginner Bootcamp 2023
 
 ## Semantic Versioning :mage:
+EXTRA NOTE (I originally did the main file vs. the 'terraform refractor cli' branch. So to keep up with everything correctly, I've redone that branch, added this note, then pulled into the main branch on Github!)
 
 This project is going to utilize semantic versioning for it's tagging.
 [semver.org](https://semver.org/)
