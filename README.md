@@ -218,14 +218,20 @@ This will run a plan and pass the changeset to be executed by Terraform. Apply s
 
 If we want to automatically approve an apply, we can provide the auto approve flag eg. `terraform apply --auto-approve`
 
+#### Terraform Destroy
 
-### Terraform Lock Files
+`terraform destroy`
+This will destroy resources.
+
+You can also use the auto approve (--auto-approve) flag to skip the approve prompt eg. `terraform apply --auto-approve`
+
+#### Terraform Lock Files
 
 `.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project.
 
 The Terraform Lock File **should be committed** to your Version Control System (VSC) eg. Github
 
-### Terraform State Files
+#### Terraform State Files
 
 `.terraform.tfstate` contains information about the current state of your infrastructure.
 
@@ -237,8 +243,20 @@ If you lose this file, you lose knowing the state of your terraform infrastructu
 
 `.terraform.tfstate.backup` is the previous state file state.
 
-### Terraform Directory
+#### Terraform Directory
 
 `terraform` directory contains binaries of terraform providers.
 
 **SPECIAL NOTE** For good practice, do NOT mess with the 'terraform.tfstate' file.
+
+#### AWS Bucket Creation
+You might get an error like I did stating the follow: 
+```
+403 Error, S3 Bucket Access Denied
+```
+If this happens, goto your AWS console and do the following:
+- Goto 'Iam' and click on 'User groups'
+- Click on the 'Permissions' tab
+- Enable the option 'S3FullAccess'
+
+This will allow you to create/destroy buckets from Gitpod Terraform environment and will sync with your AWS account.
