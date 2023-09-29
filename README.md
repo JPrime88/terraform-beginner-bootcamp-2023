@@ -247,6 +247,8 @@ If you lose this file, you lose knowing the state of your terraform infrastructu
 
 `terraform` directory contains binaries of terraform providers.
 
+**EXTRA NOTE** - Added the alias 'tf' to the bash_profile folder so I can now call on Terraform using just that alias.
+
 ## Issues with Terraform Cloud Login and Gitpod Workspace
 
 When attempting to run `terraform login` it will launch a bash wiswig view to generate a token.
