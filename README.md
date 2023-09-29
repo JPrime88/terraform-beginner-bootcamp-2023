@@ -278,6 +278,8 @@ Provide the following code (replace your token in the file):
 
 Then open the file
 
+We have automated this workaround with the following bash script [bin/generate_tfrc_credentials](bin/generate_tfrc_credentials)
+
 **SPECIAL NOTE** For good practice, do NOT mess with the 'terraform.tfstate' file.
 
 #### AWS Bucket Creation
