@@ -288,9 +288,9 @@ Then open the file
 
 We have automated this workaround with the following bash script [bin/generate_tfrc_credentials](bin/generate_tfrc_credentials)
 
-**SPECIAL NOTE** For good practice, do NOT mess with the 'terraform.tfstate' file.
+**SPECIAL NOTE** (KEEP) For good practice, do NOT mess with the 'terraform.tfstate' file.
 
-#### AWS Bucket Creation
+#### AWS Bucket Creation (KEEP)
 You might get an error like I did stating the follow: 
 ```
 403 Error, S3 Bucket Access Denied
