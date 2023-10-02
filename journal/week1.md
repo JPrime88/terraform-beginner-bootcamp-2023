@@ -56,3 +56,28 @@ This is the default file to load in terraform variables in bulk
     - Any .auto.tfvars or .auto.tfvars.json files, processed in lexical order of their filenames.
     - Any -var and -var-file options on the command line, in the order they are provided.
     - Variable defaults
+
+## Dealing With Configuration Drift
+
+Drift is the term for when the real-world state of your infrastructure differs from the state defined in your configuration. Terraform helps detect and manage drift. Information about the real-world state of infrastructure managed by Terraform is stored in the state file. 
+
+The command `terraform refresh` updates this state file, reconciling what Terraform thinks is running and its configuration, with what actually is. All plan and apply commands run refresh first, prior to any other work. Detect drift with `terraform plan`, which reconciles desired configuration with real-world state and tells you what Terraform will do during `terraform apply`. Terraform provides more fine grained control of how to manage drift with lifecycle parameters prevent_destroy and ignore_changes.
+
+## What happens if we lose our state file?
+
+If you lose your statefile, you most likley have to tear down all your cloud infrastructure manually.
+
+You can use terraform port but it won't for all cloud resources. You need check the terraform providers documentation for which resources support import.
+
+### Fix Missing Resources with Terraform Import
+
+`terraform import aws_s3_bucket.bucket bucket-name`
+
+[Terraform Import](https://developer.hashicorp.com/terraform/cli/import)
+[AWS S3 Bucket Import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+
+### Fix Manual Configuration
+
+This is when someone goes and delete or modifies cloud resource manually through ClickOps. 
+
+If we run Terraform plan it will attempt to put our infrstraucture back into the expected state, fixing Configuration Drift
