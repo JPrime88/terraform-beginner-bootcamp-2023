@@ -5,7 +5,13 @@ terraform {
      version = "1.0.0"
     }
   }
-  
+  cloud {
+    organization = "JPrime88-Terraform"
+    workspaces {
+      name = "terra-house-1"
+    }
+  }
+
 }
 
 provider "terratowns" {
@@ -14,13 +20,11 @@ provider "terratowns" {
   token = var.terratowns_access_token
 }
 
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
+module "home_SOR4_hosting" {
+  source = "./modules/terrahome_aws"
   user_uuid = var.teacherseat_user_uuid
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
-  content_version = var.content_version
-  assets_path = var.assets_path
+  public_path = var.SOR4.public_path
+  content_version = var.SOR4.content_version
 }
 
 resource "terratowns_home" "home" {
@@ -28,10 +32,29 @@ resource "terratowns_home" "home" {
   description = <<DESCRIPTION
 Streets of rage 4 is a game that came out in 2020!
 It has led to the resurgance of the "beat-em-up games" genre.
-This is my guide that will show you how to play Streets of Rage 4 and 
-how to be a better player.
+This is my tribute to this game and reasons why you should play!
 DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
-  town = "missingo"
-  content_version = 1
+  domain_name = module.home_SOR4_hosting.domain_name
+  town = "gamers-grotto"
+  content_version = var.SOR4.content_version
+}
+
+module "home_Smoothies_hosting" {
+  source = "./modules/terrahome_aws"
+  user_uuid = var.teacherseat_user_uuid
+  public_path = var.Smoothies.public_path
+  content_version = var.Smoothies.content_version
+}
+
+resource "terratowns_home" "home_Smoothies" {
+  name = "The Healthiest Snack you need!!"
+  description = <<DESCRIPTION
+I just absolutely LOVE Smoothies!!!! Not only can you mix your favorite
+fruits and veggies together, but you also get so many health benefits
+from drinking them on a consistent basis. I mean...look at the pictures.
+Doesn't look colorful, vibrant, and AMAZING!?!?!?
+DESCRIPTION
+  domain_name = module.home_Smoothies_hosting.domain_name
+  town = "cooker-cove"
+  content_version = var.Smoothies.content_version
 }
